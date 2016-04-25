@@ -8,7 +8,7 @@ using Android.OS;
 
 namespace AutoReStory
 {
-    [Activity(Label = "AutoReStory", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "AutoReStory", MainLauncher = false, Icon = "@drawable/icon")]
     public class MainActivity : Activity
     {
         int count = 1;
@@ -22,9 +22,10 @@ namespace AutoReStory
 
             // Get our button from the layout resource,
             // and attach an event to it
-            Button button = FindViewById<Button>(Resource.Id.MyButton);
 
-            button.Click += delegate { button.Text = string.Format("{0} clicks!", count++); };
+            Button startButton = FindViewById<Button>(Resource.Id.start);
+
+            startButton.Click += delegate { startButton.Text = string.Format("{0} clicks!", count++); };
         }
     }
 }
