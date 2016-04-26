@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffe0e0e0">
+    <ImageView
+        android:src="@drawable/splash_logo"
+        android:layout_width="match_parent"
+        android:layout_height="219.5dp"
+        android:id="@+id/imageView1"
+        android:background="#ffffffff"
+        android:paddingTop="25dp"
+        android:layout_marginBottom="30dp" />
+    <TextView
+        android:text="You don't have any projects"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:textColor="#ff263238"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="40dp"
+        android:layout_marginTop="40dp" />
+    <Button
+        android:id="@+id/start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Get Started"
+        android:layout_marginLeft="50.5dp"
+        android:layout_marginRight="50.5dp"
+        android:background="#ff76ff03"
+        android:textColor="#ffffffff"
+        android:typeface="normal"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:layout_marginBottom="50dp" />
+    <TextView
+        android:text="Let's start a new project"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:textColor="#ff263238"
+        android:gravity="center_horizontal" />
+</LinearLayout>
