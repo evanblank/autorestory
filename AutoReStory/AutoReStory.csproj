@@ -53,10 +53,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddEditAddressBookActivity.cs" />
+    <Compile Include="AddEditVehicleActivity.cs" />
     <Compile Include="AddressBook.cs" />
-    <Compile Include="AddressBookDbHelper.cs" />
-    <Compile Include="ContactListBaseAdapter.cs" />
+    <Compile Include="VehicleDbHelper.cs" />
+    <Compile Include="AutoListBaseAdapter.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,6 +72,10 @@
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\layout\AddEditContacts.axml" />
     <AndroidResource Include="Resources\layout\list_row_contact_list.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\AddEditAutos.axml" />
+    <AndroidResource Include="Resources\layout\list_row_auto_list.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>
