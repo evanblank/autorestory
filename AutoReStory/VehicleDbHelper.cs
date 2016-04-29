@@ -19,7 +19,7 @@ namespace AutoReStory
 
     {
         private const string APP_DATABASENAME = "AutoRestory.db3";
-        private const int APP_DATABASE_VERSION = 1;
+        private const int APP_DATABASE_VERSION = 3;
 
         public VehicleDbHelper(Context ctx) :
             base(ctx, APP_DATABASENAME, null, APP_DATABASE_VERSION)
@@ -47,7 +47,10 @@ namespace AutoReStory
                             PercentageTires INTEGER NOT NULL,
                             PercentageOverall INTEGER NOT NULL
                             )");
-
+            db.ExecSQL("Insert into Vehicle(Year,Make,Model,Color,Description,PercentagePaint,PercentageBody,PercentageGlass,PercentageTrim,PercentageUpholstery,PercentageMechanical,PercentageElectrical,PercentageFrame,PercentageTires,PercentageOverall) VALUES ('1971','Dodge','Dart','White','Needs major repairs.',10,20,30,40,50,60,70,80,90,50)");
+            db.ExecSQL("Insert into Vehicle(Year,Make,Model,Color,Description,PercentagePaint,PercentageBody,PercentageGlass,PercentageTrim,PercentageUpholstery,PercentageMechanical,PercentageElectrical,PercentageFrame,PercentageTires,PercentageOverall) VALUES ('1969','Ford','Mustang','Red',Null,100,50,80,40,50,60,30,80,50,75)");
+            db.ExecSQL("Insert into Vehicle(Year,Make,Model,Color,Description,PercentagePaint,PercentageBody,PercentageGlass,PercentageTrim,PercentageUpholstery,PercentageMechanical,PercentageElectrical,PercentageFrame,PercentageTires,PercentageOverall) VALUES ('1970','Chevy','Chevelle','Black','Needs major repairs.',10,80,30,80,50,80,70,80,60,50)");
+            db.ExecSQL("Insert into Vehicle(Year,Make,Model,Color,Description,PercentagePaint,PercentageBody,PercentageGlass,PercentageTrim,PercentageUpholstery,PercentageMechanical,PercentageElectrical,PercentageFrame,PercentageTires,PercentageOverall) VALUES ('1965','Dodge','Coronet','Blue',null,10,20,10,30,50,70,70,80,40,50)");
         }
 
         public override void OnUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
