@@ -24,7 +24,7 @@ namespace AutoReStory
         Button btnAdd, btnSearch;
         EditText txtSearch;
         ListView lv;
-        IList<AddressBook> listItsms = null;
+        IList<Vehicle> listItsms = null;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -33,10 +33,10 @@ namespace AutoReStory
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
 
-            btnAdd = FindViewById<Button> (Resource.Id.contactList_btnAdd);
-            btnSearch = FindViewById<Button>(Resource.Id.contactList_btnSearch);
-            txtSearch = FindViewById<EditText>(Resource.Id.contactList_txtSearch);
-            lv = FindViewById<ListView>(Resource.Id.contactList_listView);
+            btnAdd = FindViewById<Button> (Resource.Id.autoList_btnAdd);
+            btnSearch = FindViewById<Button>(Resource.Id.autoList_btnSearch);
+            txtSearch = FindViewById<EditText>(Resource.Id.autoList_txtSearch);
+            lv = FindViewById<ListView>(Resource.Id.autoList_listView);
 
             btnAdd.Click += delegate
             {
@@ -74,7 +74,7 @@ namespace AutoReStory
 
         private void lv_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
         {
-            AddressBook o = listItsms[e.Position];
+            Vehicle o = listItsms[e.Position];
 
             //  Toast.MakeText(this, o.Id.ToString(), ToastLength.Long).Show();
 

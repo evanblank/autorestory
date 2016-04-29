@@ -12,7 +12,7 @@ using Android.Widget;
 
 namespace AutoReStory
 {
-    class Vehicle
+    public class Vehicle
     {
         public int Id { get; set; }
         public string Year { get; set; }

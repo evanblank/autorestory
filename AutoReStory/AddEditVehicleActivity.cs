@@ -33,17 +33,7 @@ namespace AutoReStory
                     txtMake,
                     txtModel,
                     txtColor,
-                    txtDescription,
-                    txtPercentagePaint,
-                    txtPercentageBody,
-                    txtPercentageGlass,
-                    txtPercentageTrim,
-                    txtPercentageUpholstery,
-                    txtPercentageMechanical,
-                    txtPercentageElectrical,
-                    txtPercentageFrame,
-                    txtPercentageTires,
-                    txtPercentageOverall;
+                    txtDescription;
 
         TextView tvPaint,
                     tvBody,
@@ -67,12 +57,31 @@ namespace AutoReStory
                     sbTires,
                     sbOverall;
 
-        Button btnSave,
-                    openCamera;
+        Button      btnSave;
 
         ImageView imageView;
 
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
 
+            // make it available in the gallery
+            Intent mediaScanIntent = new Intent(Intent.ActionMediaScannerScanFile);
+            Uri contentUri = Uri.FromFile(_file);
+            mediaScanIntent.SetData(contentUri);
+            SendBroadcast(mediaScanIntent);
+
+            // display in ImageView. We will resize the bitmap to fit the display
+            // Loading the full sized image will consume to much memory 
+            // and cause the application to crash.
+            int height = imageView.Height;
+            int width = Resources.DisplayMetrics.WidthPixels;
+            using (Bitmap bitmap = _file.Path.LoadAndResizeBitmap(width, height))
+            {
+                imageView.RecycleBitmap();
+                imageView.SetImageBitmap(bitmap);
+            }
+        }
 
 
 
@@ -89,16 +98,7 @@ namespace AutoReStory
             txtModel = FindViewById<EditText>(Resource.Id.addEdit_Model);
             txtColor = FindViewById<EditText>(Resource.Id.addEdit_Color);
             txtDescription = FindViewById<EditText>(Resource.Id.addEdit_Description);
-            txtPercentagePaint = FindViewById<EditText>(Resource.Id.addEdit_Description);
-            txtPercentageBody = FindViewById<EditText>(Resource.Id.addEdit_PercentageBody);
-            txtPercentageGlass = FindViewById<EditText>(Resource.Id.addEdit_PercentageGlass);
-            txtPercentageTrim = FindViewById<EditText>(Resource.Id.addEdit_PercentageTrim);
-            txtPercentageUpholstery = FindViewById<EditText>(Resource.Id.addEdit_PercentageUpholstery);
-            txtPercentageMechanical = FindViewById<EditText>(Resource.Id.addEdit_PercentageMechanical);
-            txtPercentageElectrical = FindViewById<EditText>(Resource.Id.addEdit_PercentageElectrical);
-            txtPercentageFrame = FindViewById<EditText>(Resource.Id.addEdit_PercentageFrame);
-            txtPercentageTires = FindViewById<EditText>(Resource.Id.addEdit_PercentageTires);
-            txtPercentageOverall = FindViewById<EditText>(Resource.Id.addEdit_PercentageOverall);
+
             btnSave = FindViewById<Button>(Resource.Id.addEdit_btnSave);
 
             tvPaint = FindViewById<TextView>(Resource.Id.paint);
@@ -127,27 +127,10 @@ namespace AutoReStory
             {
                 CreateDirectoryForPictures();
 
-                cameraButton = FindViewById<Button>(Resource.Id.openCamera);
+                Button cameraButton = FindViewById<Button>(Resource.Id.openCamera);
                 imageView = FindViewById<ImageView>(Resource.Id.imageView1);
 
-                //cameraButton.Click += TakeAPicture;
-            }
-
-            // make it available in the gallery
-            Intent mediaScanIntent = new Intent(Intent.ActionMediaScannerScanFile);
-            Uri contentUri = Uri.FromFile(_file);
-            mediaScanIntent.SetData(contentUri);
-            SendBroadcast(mediaScanIntent);
-
-            // display in ImageView. We will resize the bitmap to fit the display
-            // Loading the full sized image will consume to much memory 
-            // and cause the application to crash.
-            int height = _imageView.Height;
-            int width = Resources.DisplayMetrics.WidthPixels;
-            using (Bitmap bitmap = _file.Path.LoadAndResizeBitmap(width, height))
-            {
-                imageView.RecycleBitmap();
-                imageView.SetImageBitmap(bitmap);
+                cameraButton.Click += TakeAPicture;
             }
 
             btnSave.Click += buttonSave_Click;
@@ -199,16 +182,18 @@ namespace AutoReStory
                 txtModel.Text = cData.GetString(cData.GetColumnIndex("Model"));
                 txtColor.Text = cData.GetString(cData.GetColumnIndex("Color"));
                 txtDescription.Text = cData.GetString(cData.GetColumnIndex("Description"));
-                txtPercentagePaint.Text = cData.GetString(cData.GetColumnIndex("PercentagePaint"));
-                txtPercentageBody.Text = cData.GetString(cData.GetColumnIndex("PercentageBody"));
-                txtPercentageGlass.Text = cData.GetString(cData.GetColumnIndex("PercentageGlass"));
-                txtPercentageTrim.Text = cData.GetString(cData.GetColumnIndex("PercentageTrim"));
-                txtPercentageUpholstery.Text = cData.GetString(cData.GetColumnIndex("PercentageUpholstery"));
-                txtPercentageMechanical.Text = cData.GetString(cData.GetColumnIndex("PercentageMechanical"));
-                txtPercentageElectrical.Text = cData.GetString(cData.GetColumnIndex("PercentageElectrical"));
-                txtPercentageFrame.Text = cData.GetString(cData.GetColumnIndex("PercentageFrame"));
-                txtPercentageTires.Text = cData.GetString(cData.GetColumnIndex("PercentageTires"));
-                txtPercentageOverall.Text = cData.GetString(cData.GetColumnIndex("PercentageOverall"));
+
+                sbPaint.Progress = cData.GetInt(cData.GetColumnIndex("PercentagePaint"));
+                sbBody.Progress = cData.GetInt(cData.GetColumnIndex("PercentageBody"));
+                sbGlass.Progress = cData.GetInt(cData.GetColumnIndex("PercentageGlass"));
+                sbTrim.Progress = cData.GetInt(cData.GetColumnIndex("PercentageTrim"));
+                sbUpholstery.Progress = cData.GetInt(cData.GetColumnIndex("PercentageUpholstery"));
+                sbMechanical.Progress = cData.GetInt(cData.GetColumnIndex("PercentageMechanical"));
+                sbElectrical.Progress = cData.GetInt(cData.GetColumnIndex("PercentageElectrical"));
+                sbFrame.Progress = cData.GetInt(cData.GetColumnIndex("PercentageFrame"));
+                sbTires.Progress = cData.GetInt(cData.GetColumnIndex("PercentageTires"));
+                sbOverall.Progress = cData.GetInt(cData.GetColumnIndex("PercentageOverall"));
+
             }
         }
 
@@ -227,13 +212,13 @@ namespace AutoReStory
                 return;
             }
 
-            if (txtModel.Text.Trim().Length > 0)
+            if (txtModel.Text.Trim().Length < 1)
             {
                 Toast.MakeText(this, "Enter Model.", ToastLength.Short).Show();
                 return;
             }
 
-            if (txtColor.Text.Trim().Length > 0)
+            if (txtColor.Text.Trim().Length < 1)
             {
                 Toast.MakeText(this, "Enter Color.", ToastLength.Short).Show();
                 return;
@@ -250,56 +235,56 @@ namespace AutoReStory
             ab.Model = txtModel.Text;
             ab.Color = txtColor.Text;
             ab.Description = txtDescription.Text;
-            // Paint
-            if (txtPercentagePaint.Text.Trim().Length > 0)
+
+            if (sbPaint.Progress > 0)
             {
-                ab.PercentagePaint = int.Parse(txtPercentagePaint.Text);
+                ab.PercentagePaint = sbPaint.Progress;
             }
             //Body
-            if (txtPercentageBody.Text.Trim().Length > 0)
+            if (sbBody.Progress > 0)
             {
-                ab.PercentageBody = int.Parse(txtPercentageBody.Text);
+                ab.PercentageBody = sbBody.Progress;
             }
             //Glass
-            if (txtPercentageGlass.Text.Trim().Length > 0)
+            if (sbGlass.Progress > 0)
             {
-                ab.PercentageGlass = int.Parse(txtPercentageGlass.Text);
+                ab.PercentageGlass = sbGlass.Progress;
             }
             //Trim
-            if (txtPercentageTrim.Text.Trim().Length > 0)
+            if (sbTrim.Progress > 0)
             {
-                ab.PercentageTrim = int.Parse(txtPercentageTrim.Text);
+                ab.PercentageTrim = sbTrim.Progress;
             }
             //Upholstery
-            if (txtPercentageUpholstery.Text.Trim().Length > 0)
+            if (sbUpholstery.Progress > 0)
             {
-                ab.PercentageUpholstery = int.Parse(txtPercentageUpholstery.Text);
+                ab.PercentageUpholstery = sbUpholstery.Progress;
             }
             //Mechanical
-            if (txtPercentageMechanical.Text.Trim().Length > 0)
+            if (sbMechanical.Progress > 0)
             {
-                ab.PercentageMechanical = int.Parse(txtPercentageMechanical.Text);
+                ab.PercentageMechanical = sbMechanical.Progress;
             }
             //Electrical
-            if (txtPercentageElectrical.Text.Trim().Length > 0)
+            if (sbMechanical.Progress > 0)
             {
-                ab.PercentageElectrical = int.Parse(txtPercentageElectrical.Text);
+                ab.PercentageElectrical = sbMechanical.Progress;
             }
             //Frame
-            if (txtPercentageFrame.Text.Trim().Length > 0)
+            if (sbFrame.Progress > 0)
             {
-                ab.PercentageFrame = int.Parse(txtPercentageFrame.Text);
+                ab.PercentageFrame = sbFrame.Progress;
             }
             //Tires
-            if (txtPercentageTires.Text.Trim().Length > 0)
+            if (sbTires.Progress > 0)
             {
-                ab.PercentageTires = int.Parse(txtPercentageTires.Text);
+                ab.PercentageTires = sbTires.Progress;
             }
-            if (txtPercentageOverall.Text.Trim().Length > 0)
+            if (sbOverall.Progress > 0)
             {
-                ab.PercentageOverall = int.Parse(txtPercentageOverall.Text);
+                ab.PercentageOverall = sbOverall.Progress;
             }
-
+           
 
             try
             {

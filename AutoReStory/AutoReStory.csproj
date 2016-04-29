@@ -54,7 +54,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddEditVehicleActivity.cs" />
-    <Compile Include="AddressBook.cs" />
     <Compile Include="VehicleDbHelper.cs" />
     <Compile Include="AutoListBaseAdapter.cs" />
     <Compile Include="MainActivity.cs" />
@@ -70,12 +69,11 @@
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
-    <AndroidResource Include="Resources\layout\AddEditContacts.axml" />
-    <AndroidResource Include="Resources\layout\list_row_contact_list.axml">
-      <SubType>AndroidResource</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\AddEditAutos.axml" />
     <AndroidResource Include="Resources\layout\list_row_auto_list.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\AddEditTask.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>

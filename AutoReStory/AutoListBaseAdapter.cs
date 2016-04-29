@@ -16,8 +16,8 @@ namespace AutoReStory
     public partial class AutoListBaseAdapter : BaseAdapter<Vehicle>
     {
         IList<Vehicle> autoListArrayList;
-        private LayoutInflater mInflater;
-        private Context activity;
+        LayoutInflater mInflater;
+        Context activity;
         public AutoListBaseAdapter(Context context,
                                                 IList<Vehicle> results)
         {
@@ -54,17 +54,8 @@ namespace AutoReStory
                 holder.txtMake = convertView.FindViewById<TextView>(Resource.Id.lr_make);
                 holder.txtModel = convertView.FindViewById<TextView>(Resource.Id.lr_model);
                 holder.txtColor = convertView.FindViewById<TextView>(Resource.Id.lr_color);
-                holder.txtDescription = convertView.FindViewById<TextView>(Resource.Id.lr_descriptin);
-                holder.txtPercentagePaint = convertView.FindViewById<TextView>(Resource.Id.lr_percentagepaint);
-                holder.txtPercentageBody = convertView.FindViewById<TextView>(Resource.Id.lr_percentagebody);
-                holder.txtPercentageGlass = convertView.FindViewById<TextView>(Resource.Id.lr_percentageglass);
-                holder.txtPercentageTrim = convertView.FindViewById<TextView>(Resource.Id.lr_percentagetrim);
-                holder.txtPercentageUpholstery = convertView.FindViewById<TextView>(Resource.Id.lr_percentageupholstery);
-                holder.txtPercentageMechanical = convertView.FindViewById<TextView>(Resource.Id.lr_percentagemechanical);
-                holder.txtPercentageElectrical = convertView.FindViewById<TextView>(Resource.Id.lr_percentageelectrical);
-                holder.txtPercentageFrame = convertView.FindViewById<TextView>(Resource.Id.lr_percentageframe);
-                holder.txtPercentageTires = convertView.FindViewById<TextView>(Resource.Id.lr_percentagetires);
-                holder.txtPercentageOverall = convertView.FindViewById<TextView>(Resource.Id.lr_percentageoverall);
+                holder.txtDescription = convertView.FindViewById<TextView>(Resource.Id.lr_description);
+                
                 btnDelete = convertView.FindViewById<ImageView>(Resource.Id.lr_deleteBtn);
 
 
@@ -111,7 +102,8 @@ namespace AutoReStory
             holder.txtMake.Text = autoListArrayList[position].Make;
             holder.txtModel.Text = autoListArrayList[position].Model;
             holder.txtColor.Text = autoListArrayList[position].Color;
-            holder.txtDescription.Text = autoListArrayList[position].Details;
+            holder.txtDescription.Text = autoListArrayList[position].Description;
+            /*
             holder.txtPercentagePaint.Text = autoListArrayList[position].PercentagePaint;
             holder.txtPercentageBody.Text = autoListArrayList[position].PercentageBody;
             holder.txtPercentageGlass.Text = autoListArrayList[position].PercentageGlass;
@@ -122,7 +114,7 @@ namespace AutoReStory
             holder.txtPercentageFrame.Text = autoListArrayList[position].PercentageFrame;
             holder.txtPercentageTires.Text = autoListArrayList[position].PercentageTires;
             holder.txtPercentageOverall.Text = autoListArrayList[position].PercentageOverall;
-
+            */
 
             if (position % 2 == 0)
             {
